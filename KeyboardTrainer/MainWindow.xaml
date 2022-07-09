@@ -1,0 +1,150 @@
+﻿<Window x:Class="KeyboardTrainer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyboardTrainer"
+        mc:Ignorable="d"
+        Title="KBT" Name="window"  Height="450" Width="800" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="7*"/>            
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Label FontSize="15" VerticalAlignment="Center" x:Name="Speed" Content="Speed : 0 chars/min" Grid.Column="0" Grid.Row="0"/>
+            <DockPanel Grid.Column="1" Grid.Row="0">
+                <Label FontSize="15" VerticalAlignment="Center" x:Name="Fails" Content="Fails : " DockPanel.Dock="Left"/>
+                    <Label FontSize="15" VerticalAlignment="Center" x:Name="FailsC" DockPanel.Dock="Right"/>
+            </DockPanel>
+            <DockPanel Grid.Column="2" Grid.Row="0">
+                <Label x:Name="Diff" Content="Difficulty :" VerticalAlignment="Center" DockPanel.Dock="Left" FontSize="15" />
+                <Label x:Name="Diff1" Content="{Binding ElementName=DiffSlider, Path=Value}" VerticalAlignment="Center" DockPanel.Dock="Left" FontSize="15" />
+                <Slider x:Name="DiffSlider" DockPanel.Dock="Right" VerticalAlignment="Center" IsSnapToTickEnabled="True" Interval="10" Maximum="5" Minimum="1"/>
+            </DockPanel>
+            <ProgressBar Opacity="0.5" x:Name="Selection" Minimum ="0" Maximum="{Binding ElementName=Text, Path=Text.Length, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Value="0" Grid.ColumnSpan="4" Grid.Column="0" Panel.ZIndex="1" />
+            <TextBox IsReadOnly="true" x:Name="Text" Grid.Row="2" Grid.Column="0" Background="LightBlue" Grid.ColumnSpan="4" FontSize="20" FontFamily="Arial" />
+            <CheckBox x:Name="Case" HorizontalAlignment="Center" Grid.Column="3" Grid.Row="0" FontSize="15" VerticalAlignment="Center" Content="Case Sensitive"/>
+            <Button x:Name="Start" Content="Start" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" FontSize="15" Margin="2.5"/>
+            <Button x:Name="Stop" Content="Stop" VerticalAlignment="Center" Grid.Column="3" Grid.Row="1" FontSize="15" Margin="2.5" IsEnabled="False"/>
+        </Grid>
+        <Grid Grid.Row="2" x:Name="ButtonGrid" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Border">
+                    <Style.Setters>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="CornerRadius" Value="6"/>
+                        <Setter Property="Margin" Value="3"/>
+                        
+                    </Style.Setters>
+                    
+                </Style>
+                <Style TargetType="Label">
+                    <Style.Setters>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                    </Style.Setters>
+                </Style>
+            </Grid.Resources>
+            <Border Tag="146" Background="LightPink" Grid.Column="0" Grid.Row="0"> <Label Content="`"/></Border>
+            <Border Tag="35" Background="LightPink" Grid.Column="1" Grid.Row="0"> <Label Content="1"/></Border>
+            <Border Tag="36" Background="LightPink" Grid.Column="2" Grid.Row="0"> <Label Content="2"/></Border>
+            <Border Tag="37" Background="LightYellow" Grid.Column="3" Grid.Row="0"> <Label Content="3"/></Border>
+            <Border Tag="38" Background="LightGreen" Grid.Column="4" Grid.Row="0"> <Label Content="4"/></Border>
+            <Border Tag="39" Background="LightBlue" Grid.Column="5" Grid.Row="0"> <Label Content="5"/></Border>
+            <Border Tag="40" Background="LightBlue" Grid.Column="6" Grid.Row="0"> <Label Content="6"/></Border>
+            <Border Tag="41" Background="MediumPurple" Grid.Column="7" Grid.Row="0"> <Label Content="7"/></Border>
+            <Border Tag="42" Background="MediumPurple" Grid.Column="8" Grid.Row="0"> <Label Content="8"/></Border>
+            <Border Tag="43" Background="LightPink" Grid.Column="9" Grid.Row="0"> <Label Content="9"/></Border>
+            <Border Tag="34" Background="LightYellow" Grid.Column="10" Grid.Row="0"> <Label Content="0"/></Border>
+            <Border Tag="143" Background="LightGreen" Grid.Column="11" Grid.Row="0"> <Label Content="-"/></Border>
+            <Border Tag="141" Background="LightGreen" Grid.Column="12" Grid.Row="0"> <Label Content="="/></Border>
+            <Border Tag="2" Background="LightGray" Grid.Column="13" Grid.ColumnSpan="2" Grid.Row="0"> <Label Content="Backspace"/></Border>
+            <Border Tag="3" Background="LightGray" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"> <Label Content="Tab"/></Border>
+            <Border Tag="60" Background="LightPink" Grid.Column="2" Grid.Row="1"> <Label Content="q"/></Border>
+            <Border Tag="66" Background="LightYellow" Grid.Column="3" Grid.Row="1"> <Label Content="w"/></Border>
+            <Border Tag="48" Background="LightGreen" Grid.Column="4" Grid.Row="1"> <Label Content="e"/></Border>
+            <Border Tag="61" Background="LightBlue" Grid.Column="5" Grid.Row="1"> <Label Content="r"/></Border>
+            <Border Tag="63" Background="LightBlue" Grid.Column="6" Grid.Row="1"> <Label Content="t"/></Border>
+            <Border Tag="68" Background="MediumPurple" Grid.Column="7" Grid.Row="1"> <Label Content="y"/></Border>
+            <Border Tag="64" Background="MediumPurple" Grid.Column="8" Grid.Row="1"> <Label Content="u"/></Border>
+            <Border Tag="52" Background="LightPink" Grid.Column="9" Grid.Row="1"> <Label Content="i"/></Border>
+            <Border Tag="58" Background="LightYellow" Grid.Column="10" Grid.Row="1"> <Label Content="o"/></Border>
+            <Border Tag="59" Background="LightGreen" Grid.Column="11" Grid.Row="1"> <Label Content="p"/></Border>
+            <Border Tag="149" Background="LightGreen" Grid.Column="12" Grid.Row="1"> <Label Content="["/></Border>
+            <Border Tag="151" Background="LightGreen" Grid.Column="13" Grid.Row="1"> <Label Content="]"/></Border>
+            <Border Tag="150" Background="LightGreen" Grid.Column="14" Grid.Row="1"> <Label Content="\"/></Border>
+            <Border Tag="8" Background="LightGray" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"> <Label Content="CapsLock" Margin="0,6,0,0" VerticalAlignment="Top"/></Border>
+            <Border Tag="44" Background="LightPink" Grid.Column="2" Grid.Row="2"> <Label Content="a"/></Border>
+            <Border Tag="62" Background="LightYellow" Grid.Column="3" Grid.Row="2"> <Label Content="s"/></Border>
+            <Border Tag="47" Background="LightGreen" Grid.Column="4" Grid.Row="2"> <Label Content="d"/></Border>
+            <Border Tag="49" Background="LightBlue" Grid.Column="5" Grid.Row="2"> <Label Content="f"/></Border>
+            <Border Tag="50" Background="LightBlue" Grid.Column="6" Grid.Row="2"> <Label Content="g"/></Border>
+            <Border Tag="51" Background="MediumPurple" Grid.Column="7" Grid.Row="2"> <Label Content="h"/></Border>
+            <Border Tag="53" Background="MediumPurple" Grid.Column="8" Grid.Row="2"> <Label Content="j"/></Border>
+            <Border Tag="54" Background="LightPink" Grid.Column="9" Grid.Row="2"> <Label Content="k"/></Border>
+            <Border Tag="55" Background="LightYellow" Grid.Column="10" Grid.Row="2"> <Label Content="l"/></Border>
+            <Border Tag="140" Background="LightGreen" Grid.Column="11" Grid.Row="2"> <Label Content=";"/></Border>
+            <Border Tag="152" Background="LightGreen" Grid.Column="12" Grid.Row="2"> <Label Content="'"/></Border>
+            <Border Tag="6" Background="LightGray" Grid.Column="13" Grid.Row="2" Grid.ColumnSpan="2"> <Label Content="Enter"/></Border>
+            <Border Tag="116" Background="LightGray" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"> <Label Content="Shift"/></Border>
+            <Border Tag="69" Background="LightPink" Grid.Column="2" Grid.Row="3"> <Label Content="z"/></Border>
+            <Border Tag="67" Background="LightYellow" Grid.Column="3" Grid.Row="3"> <Label Content="x"/></Border>
+            <Border Tag="46" Background="LightGreen" Grid.Column="4" Grid.Row="3"> <Label Content="c"/></Border>
+            <Border Tag="65" Background="LightBlue" Grid.Column="5" Grid.Row="3"> <Label Content="v"/></Border>
+            <Border Tag="45" Background="LightBlue" Grid.Column="6" Grid.Row="3"> <Label Content="b"/></Border>
+            <Border Tag="57" Background="MediumPurple" Grid.Column="7" Grid.Row="3"> <Label Content="n"/></Border>
+            <Border Tag="56" Background="MediumPurple" Grid.Column="8" Grid.Row="3"> <Label Content="m"/></Border>
+            <Border Tag="142" Background="LightPink" Grid.Column="9" Grid.Row="3"> <Label Content=","/></Border>
+            <Border Tag="144" Background="LightYellow" Grid.Column="10" Grid.Row="3"> <Label Content="."/></Border>
+            <Border Tag="145" Background="LightGreen" Grid.Column="11" Grid.Row="3"> <Label Content="/"/></Border>
+            <Border Tag="117" Background="LightGray" Grid.Column="12" Grid.ColumnSpan="3" Grid.Row="3"> <Label Content="Shift"/></Border>
+            <Border Tag="118" Background="LightGray" Grid.Column="0" Grid.Row="4"> <Label Content="Ctrl"/></Border>
+            <Border Tag="70" Background="LightGray" Grid.Column="1" Grid.Row="4"> <Label Content="Win"/></Border>
+            <Border Tag="120" Background="LightGray" Grid.Column="2" Grid.Row="4"> <Label Content="Alt"/></Border>
+            <Border Tag="18" Background="SandyBrown" Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="9"> <Label Content="Space"/></Border>
+            <Border Tag="121" Background="LightGray" Grid.Column="12" Grid.Row="4"> <Label Content="Alt"/></Border>
+            <Border Tag="71" Background="LightGray" Grid.Column="13" Grid.Row="4"> <Label Content="Win"/></Border>
+            <Border Tag="119" Background="LightGray" Grid.Column="14" Grid.Row="4"> <Label Content="Ctrl"/></Border>
+        </Grid>
+    </Grid>
+</Window>
